@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "blackops"
+version = "0.1.0"
+description = "A package for BlackOps utilities"
+authors = ["Daniel Diego Horcajuelo <daniel.diego@esic.university>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyspark = {extras = ["sql"], version = "^3.5.2"}
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.27.0"
+ipykernel = "^6.29.5"
+pytest = "^8.3.3"
+pre-commit = "^3.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
