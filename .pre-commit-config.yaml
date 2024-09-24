@@ -1,0 +1,51 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: check-ast
+      - id: end-of-file-fixer
+      - id: check-json
+        exclude: .devcontainer
+      - id: pretty-format-json
+        exclude: .devcontainer
+        args: [--autofix, --no-sort-keys, --indent, '4', --no-ensure-ascii]
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: check-toml
+      - id: check-added-large-files
+      - id: debug-statements
+      - id: check-docstring-first
+      - id: detect-aws-credentials
+        args: [--allow-missing-credentials]
+      - id: detect-private-key
+      - id: requirements-txt-fixer
+      - id: name-tests-test
+        args: [--pytest-test-first]
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        args: [--ignore=E501, --exit-zero, --show-source]
+        verbose: true
+
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: [--profile, black]
+
+  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+    rev: v2.13.0
+    hooks:
+      - id: pretty-format-toml
+        exclude: ^.*\.lock$
+        args: [--autofix, --no-sort]
+      - id: pretty-format-yaml
+        args: [--autofix, --offset, '2']
