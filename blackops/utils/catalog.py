@@ -1,5 +1,5 @@
-from pyspark.sql import SparkSession, DataFrame
 import pyspark.sql.functions as f
+from pyspark.sql import DataFrame, SparkSession
 
 
 def get_detailed_tables_info(spark: SparkSession) -> DataFrame:
