@@ -21,6 +21,7 @@ def save_json(obj: Dict[str, Any], path: Union[str, Path], **kwargs) -> None:
     >>> obj = {"name": "Marta", "age": 32}
     >>> save_json(obj=obj, "data/users.json")
     """
+    kwargs.setdefault("indent", 4)
     if isinstance(path, str):
         path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
