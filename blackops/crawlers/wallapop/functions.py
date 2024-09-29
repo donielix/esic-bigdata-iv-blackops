@@ -1,6 +1,4 @@
-import json
-from pathlib import Path
-from typing import Any, Dict, Union
+from typing import Any, Dict
 
 import requests
 
@@ -36,11 +34,3 @@ def fetch_api(product: str) -> Dict[str, Any]:
         data = req.json()
 
     return data
-
-
-def save_json(obj: Dict[str, Any], path: Union[str, Path], **kwargs) -> None:
-    if isinstance(path, str):
-        path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w") as file:
-        json.dump(obj, file, ensure_ascii=False, **kwargs)
