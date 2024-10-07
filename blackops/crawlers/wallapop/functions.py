@@ -28,7 +28,9 @@ def fetch_api(product: str) -> Dict[str, Any]:
             "source": "search_box",
             "latitude": LATITUDE,
             "longitude": LONGITUDE,
+            "show_multiple_sections": "true",
         },
+        headers={"X-DeviceOS": "0"},
     ) as req:
         req.raise_for_status()
         data = req.json()
