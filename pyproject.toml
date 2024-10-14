@@ -11,6 +11,7 @@ pyspark = {extras = ["sql"], version = "^3.5.2"}
 requests = "^2.32.3"
 delta-spark = "^3.2.1"
 psutil = "^6.0.0"
+delta-sharing = "^1.2.0"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.27.0"

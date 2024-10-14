@@ -4,3 +4,4 @@
 **/spark-warehouse/
 **/metastore_db/
 **/derby.log
+**/config.share
