@@ -67,6 +67,11 @@ def read_table(
     A file called `config.share` must be located in the same path where the notebook runs.
     It is possible also to specify a different directory in `config_share_path` argument.
 
+    For example, let's suppose your notebook is in the following path:
+        `/home/alumno/blackops/trabajo.ipynb`
+    Then you should put the `config.share` file in:
+        `/home/alumno/blackops/config.share`
+
     The available datasets to load are:
 
     * `unsw_nb15_dataset`
@@ -79,21 +84,42 @@ def read_table(
 
     Returns
     -------
-    `pyspark.sql.DataFrame`
+    `pyspark.sql.DataFrame`:
+        The requested table, as a Spark DataFrame.
 
     Example
     -------
+    ```
+    from blackops.utils.catalog import read_table
+
     df_main = read_table(table_name="unsw_nb15_dataset")
     dim_ip = read_table(table_name="unsw_nb15_dim_ip")
+    ```
     """
+    ALLOWED_TABLES = [
+        "esic.unsw_nb15_dataset",
+        "esic.unsw_nb15_dim_attack_cat",
+        "esic.unsw_nb15_dim_ip",
+        "esic.unsw_nb15_dim_proto",
+        "esic.unsw_nb15_dim_service",
+        "esic.unsw_nb15_dim_state",
+        "esic.unsw_nb15_features",
+    ]
     if isinstance(config_share_path, str):
         config_share_path = Path(config_share_path)
 
     if not table_name.startswith("esic."):
         table_name = "esic." + table_name
 
+    if not table_name in ALLOWED_TABLES:
+        raise ValueError(
+            f"You have selected an invalid table: {table_name}. The only allowed tables are: {ALLOWED_TABLES}"
+        )
+
     if not config_share_path.exists():
-        raise ValueError(f"Config share path doesn't exist: {config_share_path}")
+        raise ValueError(
+            f"Config share path doesn't exist: {config_share_path}. Please ensure you place `config.share` file in the same directory of your notebook."
+        )
     if spark is None:
         spark = SparkSession.getActiveSession()
         if spark is None:
