@@ -72,7 +72,7 @@ def read_table(
     Then you should put the `config.share` file in:
         `/home/alumno/blackops/config.share`
 
-    The available datasets to load are:
+    The available datasets to load for group work are:
 
     * `unsw_nb15_dataset`
     * `unsw_nb15_dim_attack_cat`
@@ -104,6 +104,7 @@ def read_table(
         "esic.unsw_nb15_dim_service",
         "esic.unsw_nb15_dim_state",
         "esic.unsw_nb15_features",
+        "esic.cybersecurity_attacks",
     ]
     if isinstance(config_share_path, str):
         config_share_path = Path(config_share_path)
