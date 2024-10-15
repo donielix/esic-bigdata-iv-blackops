@@ -112,7 +112,7 @@ def read_table(
     if not table_name.startswith("esic."):
         table_name = "esic." + table_name
 
-    if not table_name in ALLOWED_TABLES:
+    if table_name not in ALLOWED_TABLES:
         raise ValueError(
             f"You have selected an invalid table: {table_name}. The only allowed tables are: {ALLOWED_TABLES}"
         )
