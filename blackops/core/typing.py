@@ -8,4 +8,5 @@ tableNames = Literal[
     "unsw_nb15_dim_service",
     "unsw_nb15_dim_state",
     "unsw_nb15_features",
+    "cybersecurity_attacks",
 ]

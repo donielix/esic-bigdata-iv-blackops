@@ -5,6 +5,11 @@ import psutil
 import pyspark.sql.functions as f
 from pyspark.sql import DataFrame, SparkSession
 
+from blackops.core.exceptions import (
+    CONFIG_SHARE_NOT_FOUND,
+    ConfigShareNotFound,
+    InvalidTableName,
+)
 from blackops.core.typing import tableNames
 
 
@@ -113,14 +118,12 @@ def read_table(
         table_name = "esic." + table_name
 
     if table_name not in ALLOWED_TABLES:
-        raise ValueError(
+        raise InvalidTableName(
             f"You have selected an invalid table: {table_name}. The only allowed tables are: {ALLOWED_TABLES}"
         )
 
     if not config_share_path.exists():
-        raise ValueError(
-            f"Config share path doesn't exist: {config_share_path}. Please ensure you place `config.share` file in the same directory of your notebook."
-        )
+        raise ConfigShareNotFound(CONFIG_SHARE_NOT_FOUND.format(config_share_path))
     if spark is None:
         spark = SparkSession.getActiveSession()
         if spark is None:
