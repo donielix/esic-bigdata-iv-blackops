@@ -31,7 +31,7 @@ def start_spark_session() -> SparkSession:
                 "spark.databricks.delta.retentionDurationCheck.enabled": "false",
                 "spark.sql.catalogImplementation": "hive",
                 "spark.sql.repl.eagerEval.enabled": "true",
-                "spark.sql.repl.eagerEval.truncate": "100",
+                "spark.sql.repl.eagerEval.truncate": "150",
             }
         )
         .getOrCreate()
