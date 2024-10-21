@@ -9,4 +9,5 @@ tableNames = Literal[
     "unsw_nb15_dim_state",
     "unsw_nb15_features",
     "cybersecurity_attacks",
+    "football_player_stats",
 ]

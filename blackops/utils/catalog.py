@@ -110,6 +110,7 @@ def read_table(
         "esic.unsw_nb15_dim_state",
         "esic.unsw_nb15_features",
         "esic.cybersecurity_attacks",
+        "esic.football_player_stats",
     ]
     if isinstance(config_share_path, str):
         config_share_path = Path(config_share_path)
