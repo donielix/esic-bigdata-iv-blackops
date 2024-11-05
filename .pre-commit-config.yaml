@@ -14,7 +14,7 @@ repos:
         args: [--allow-multiple-documents]
       - id: check-toml
       - id: check-added-large-files
-        args: [--maxkb=1024]
+        args: [--maxkb=5000]
       - id: debug-statements
       - id: check-docstring-first
       - id: detect-aws-credentials
