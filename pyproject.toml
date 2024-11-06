@@ -18,6 +18,9 @@ scikit-learn = "^1.5.2"
 numba = "^0.60.0"
 pydantic = "^2.9.2"
 mlxtend = "^0.23.1"
+transformers = "^4.46.2"
+torch = "^2.5.1"
+einops = "^0.8.0"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.27.0"
