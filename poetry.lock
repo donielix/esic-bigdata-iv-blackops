@@ -2592,6 +2592,24 @@ files = [
 windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
+name = "pyod"
+version = "2.0.2"
+description = "A Comprehensive and Scalable Python Library for Outlier Detection (Anomaly Detection)"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pyod-2.0.2.tar.gz", hash = "sha256:e05b7a457ac9bd8b0cc41754fdafe3aefcc1f61270f33d38f43112676d9db2b8"},
+]
+
+[package.dependencies]
+joblib = "*"
+matplotlib = "*"
+numba = ">=0.51"
+numpy = ">=1.19"
+scikit-learn = ">=0.22.0"
+scipy = ">=1.5.1"
+
+[[package]]
 name = "pyparsing"
 version = "3.2.0"
 description = "pyparsing module - Classes and methods to define and execute parsing grammars"
@@ -4020,4 +4038,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "52b867b2e12fe4b3e6b4bec1825f53786f31aec61151cf488c96861c0876907b"
+content-hash = "e3dea873eb8382134a9aca994e7114748eaaa159ad297d98ff9882ed2c3d99a8"
