@@ -22,6 +22,7 @@ transformers = "^4.46.2"
 torch = "^2.5.1"
 einops = "^0.8.0"
 pyod = "^2.0.2"
+catboost = "^1.2.7"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.27.0"
