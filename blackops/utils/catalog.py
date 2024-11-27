@@ -3,6 +3,7 @@ from typing import Optional, Union
 
 import psutil
 import pyspark.sql.functions as f
+from pydantic import PositiveInt
 from pyspark.sql import DataFrame, SparkSession
 
 from blackops.core.exceptions import (
@@ -13,12 +14,16 @@ from blackops.core.exceptions import (
 from blackops.core.typing import tableNames
 
 
-def start_spark_session() -> SparkSession:
+def start_spark_session(driver_memory: Optional[PositiveInt] = None) -> SparkSession:
     """
     Initializes a SparkSession locally with Delta catalog enabled, using half of the total RAM available in
-    the system.
+    the system by default, unless `driver_memory` is specified.
     """
-    driver_memory = round(psutil.virtual_memory().total / 1024**3 / 2)
+    driver_memory = (
+        driver_memory
+        if driver_memory
+        else round(psutil.virtual_memory().total / 1024**3 / 2)
+    )
     spark = (
         SparkSession.Builder()
         .master("local[*]")
@@ -65,6 +70,7 @@ def read_table(
     spark: Optional[SparkSession] = None,
     share_name: str = "esic__black_ops",
     table_name: tableNames = "unsw_nb15_dataset",
+    driver_memory: Optional[PositiveInt] = None,
 ) -> DataFrame:
     """
     Reads a dataset as Spark DataFrame.
@@ -129,7 +135,7 @@ def read_table(
     if spark is None:
         spark = SparkSession.getActiveSession()
         if spark is None:
-            spark = start_spark_session()
+            spark = start_spark_session(driver_memory=driver_memory)
     return spark.read.format("deltaSharing").load(
         f"{config_share_path}#{share_name}.{table_name}"
     )
